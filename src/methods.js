@@ -379,6 +379,14 @@ export default Base =>
           })
       }
 
+      filteredData = filteredData
+        .map(function (row, index){
+           if(row.index){
+             row.index = index+1;
+           }
+         return row;
+      });
+      
       return filteredData
     }
 
@@ -387,7 +395,7 @@ export default Base =>
         return data
       }
 
-      const sortedData = (this.props.orderByMethod || _.orderBy)(
+      let sortedData = (this.props.orderByMethod || _.orderBy)(
         data,
         sorted.map(sort => {
           // Support custom sorting methods for each column
@@ -411,6 +419,14 @@ export default Base =>
         )
       })
 
+      sortedData = sortedData
+        .map(function (row, index){
+           if(row.index){
+             row.index = index+1;
+           }
+         return row;
+      });
+      
       return sortedData
     }
 
